@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import axios from 'axios' 
 import {updateUserInfo} from '../../ducks/reducer'
 import {connect} from 'react-redux'
 import Swal from 'sweetalert2'
@@ -17,16 +17,13 @@ class Auth extends Component {
 
       register = () => {
         const {email, password} = this.state
-        console.log(email, password)
         axios
             .post('/auth/register', {email, password})
             .then( res => {
                 Swal.fire({
                     title: "Welcome to Helo!",
-                    icon: "success",
-                    button: "Yeet"
+                    icon: "success"
                 })
-                
                 this.props.updateUserInfo(res.data.user)
                 this.props.history.push('/dashboard')
             })
@@ -45,8 +42,7 @@ class Auth extends Component {
             .then(res => {
                 Swal.fire({
                     title: "You're Logged In!",
-                    icon: "success",
-                    button: "Yeet"
+                    icon: "success"
                 })
                 this.props.updateUserInfo(res.data.user)
                 this.props.history.push('/dashboard')
@@ -58,7 +54,8 @@ class Auth extends Component {
                 })
             })
       }
-    
+
+      
     render() {
         return (
             <div>

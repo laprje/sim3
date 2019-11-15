@@ -1,7 +1,7 @@
 .Nav {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(190deg, #FF70A6, #FF9770, #FFD670, #E9FF70);
+    background: linear-gradient(190deg, #FF70A6, #FF9770, #FFD670);
     width: 100px;
     height: 100%;
     position: fixed;
@@ -27,4 +27,9 @@
 
 .Nav img {
     max-height: 90px;
+}
+
+.Nav .profile {
+    color: white;
+    
 }
