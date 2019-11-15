@@ -1,6 +1,9 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users_hash;
+DROP TABLE IF EXISTS posts;
+
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
     email VARCHAR,
     profile_img TEXT
 );
@@ -19,10 +22,10 @@ CREATE TABLE posts (
     user_id INT REFERENCES users(user_id)
 );
 
-INSERT INTO users (name, email, profile_img)
+INSERT INTO users (email, profile_img)
 VALUES
-('name', 'email', 'https://robohash.org/111'),
-('name2', 'email2', 'https://robohash.org/222');
+('email', 'https://robohash.org/111'),
+('email2', 'https://robohash.org/222');
 
 INSERT INTO posts (title, img_url, content, user_id)
 VALUES

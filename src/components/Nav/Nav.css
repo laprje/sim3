@@ -1,0 +1,30 @@
+.Nav {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(190deg, #FF70A6, #FF9770, #FFD670, #E9FF70);
+    width: 100px;
+    height: 100%;
+    position: fixed;
+    justify-content: space-around;
+}
+
+.Nav .dash-new-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    justify-content: space-between;
+}
+
+
+.Nav button {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: white;
+    font-size: 1rem;
+    margin: 15px;
+}
+
+.Nav img {
+    max-height: 90px;
+}
