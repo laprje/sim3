@@ -80,4 +80,8 @@ class Auth extends Component {
     }
 }
 
-export default connect(null, {updateUserInfo})(Auth)
+function mapStateToProps(reduxState) {
+    return reduxState
+}
+
+export default connect(mapStateToProps, {updateUserInfo})(Auth)

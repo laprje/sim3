@@ -17,15 +17,21 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 10
     }
 }))
-app.use(checkForSession);
+// app.use(checkForSession);
 
 //Auth endpoints
 app.post('/auth/register', ctrl.register)
 app.post('/auth/login', ctrl.login)
 app.post('/auth/logout', ctrl.logout)
+app.get('/auth/getSession', ctrl.getSession)
+app.get('/api/auth/me', ctrl.getUser)
 
 //Normal endpoints
 app.get(`/api/posts`, ctrl.getAllPosts)
+app.post('/api/post', ctrl.addPost)
+app.get('/api/post/:id', ctrl.getPost)
+app.put('/api/post', ctrl.editPost)
+app.get('/api/posts/:id', ctrl.getNonUserPosts)
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
