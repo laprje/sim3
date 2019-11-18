@@ -19,8 +19,7 @@ module.exports = {
           user_id: user_id[0].user_id,
           email,
           profile_img: `https://robohash.org/${email}`
-        };
-        console.log(req.session.user)
+        }
         res.status(201).send({ message: "Logged In", user: req.session.user });
       },
 
@@ -40,7 +39,6 @@ module.exports = {
           return res.status(401).send({ message: "Password incorrect" });
         }
         req.session.user = { user_id, email, profile_img };
-        console.log(req.session.user)
         res.status(200).send({ message: "Logged In", user: req.session.user });
       },
 
@@ -57,9 +55,9 @@ module.exports = {
 
       getAllPosts: (req, res) => {
           const db = req.app.get('db');
-          const { title, img_url_url, content, user_id } = req.body
+          const {user_id} = req.session.user
 
-          db.get_all_posts([title, img_url_url, content, user_id])
+          db.get_all_posts(user_id)
             .then(posts => {
                 res.status(200).send(posts)
             })
@@ -75,16 +73,10 @@ module.exports = {
           
       // },
 
-      getUser: (req, res) => {
-        const {email, profile_img} = req.session.user
-        const db = req.app.get('db')
-        db.get_user([email, profile_img])
-        .then(user => {
-          res.status(200).send(user)
-        })
-        .catch(err => {
-          console.log(err)
-        })
+      getUser(req, res){
+        if (req.session.user) {
+          res.status(200).send(req.session.user)
+        }
       },
 
       addPost: (req, res) => {

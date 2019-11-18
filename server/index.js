@@ -17,11 +17,11 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 10
     }
 }))
-// app.use(checkForSession);
+
 
 //Auth endpoints
 app.post('/auth/register', ctrl.register)
-app.post('/auth/login', ctrl.login)
+app.post('/auth/login', checkForSession, ctrl.login)
 app.post('/auth/logout', ctrl.logout)
 app.get('/auth/getSession', ctrl.getSession)
 app.get('/api/auth/me', ctrl.getUser)

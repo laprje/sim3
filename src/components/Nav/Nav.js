@@ -9,17 +9,22 @@ import Swal from "sweetalert2";
 class Nav extends Component {
   constructor() {
     super();
+    this.state = {
+      user: {}
+    }
     this.logout = this.logout.bind(this);
   }
 
-  componentDidMount = (req, res) => {
+  componentDidMount(req, res) {
     axios.get("/api/auth/me").then(user => {
-      res.status(200).send(user);
+      this.setState({
+        user: user.data
+      })
     });
     
   };
 
-  logout = (props) => {
+  logout = () => {
     axios.post("/auth/logout").then(res => {
       Swal.fire(res.data.message);
       this.props.updateUserInfo({
@@ -30,12 +35,13 @@ class Nav extends Component {
       });
     });
   };
-  render(props) {
+  render() {
+    console.log(this.state)
     return (
       <div className="Nav">
         <div className="profile">
-          {this.props.profile_img && <img src={this.props.profile_img} alt="" />}{" "}
-          {this.props.email && <h4>{this.props.email}</h4>}
+          {this.state.user.profile_img && <img src={this.state.user.profile_img} alt="" />}{" "}
+          {this.state.user.email && <h4>{this.state.user.email}</h4>}
         </div>
         <div className="dash-new-container">
           <Link to="/dashboard">

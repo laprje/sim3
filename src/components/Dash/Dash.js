@@ -20,9 +20,9 @@ class Dash extends Component {
     axios.get('/api/posts').then(res => {
       this.setState({ posts: res.data })
     })
-    axios.get('/auth/getSession').then()
-    axios.get(`/api/posts/${this.props.user_id}`)
-    .then(res => this.setState({ filteredPosts: res.data }))
+    // axios.get('/auth/getSession').then()
+    // axios.get(`/api/posts/${this.props.user_id}`)
+    // .then(res => this.setState({ filteredPosts: res.data }))
   }
   showUserPosts = () => {
     this.setState({ usersPosts: !this.state.usersPosts})
